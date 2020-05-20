@@ -10,7 +10,7 @@
   --youtube-color: hsl(348, 97%, 39%);
   
   /* Theme */ 
-  --toggle-darkMode: linear gradient hsl(210, 78%, 56%) to hsl(146, 68%, 55%);
+  --toggle-darkMode: linear-gradient(to right, hsl(210, 78%, 56%),  hsl(146, 68%, 55%));
   --toggle-lightMode: hsl(230, 22%, 74%);
   
   /* Light Theme */
@@ -20,8 +20,9 @@
   --titles-lightMode: hsl(230, 17%, 14%); /* Text */
 
   /* Dark Theme */
+  --white-darkMode: #FFFFFF;
   --background-darkMode: hsl(230, 17%, 14%); /* BG */
-  --header-darkMode: hsl(232, 19%, 15%); /* Top BG Pattern */
+  --header-darkMode: #1F2231; /* Top BG Pattern */
   --card-darkMode: hsl(228, 28%, 20%); /* Card BG */
   --text-darkMode: hsl(228, 34%, 66%); /* Text */
 }
@@ -68,6 +69,14 @@ body {
 }
 
 /* ______SWITCH */
+.dark-mode {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dark-mode-title {
+  font-weight: bold;
+}
 .switch {
   display: block;
   height: 40px;
@@ -89,6 +98,9 @@ body {
   transform: translateX(40px);
   transition: .3s;
   will-change: transform;
+}
+.checkbox {
+  display: none;
 }
 .checkbox:checked ~ .switch::before{
   transform: translateX(0);
@@ -242,19 +254,45 @@ body {
   .grid {
     grid-template-columns: repeat(4, 1fr);
   } 
+  .header-grid {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+  }
+  .header-totalFollowers {
+    border-bottom: none;
+  }
 }
 
 
 /* _____DARK-MODE */
 @media (prefers-color-scheme: dark) {
   :root {
-    --white: var(--background-darkMode);
-    --header-lightMode: #1F2231;  /* var(--header-darkMode) */
-    --card-lightMode: var(--card-darkMode);
-    --text-lightMode: var(--text-darkMode);
-    --titles-lightMode: white;
+    --white: hsl(230, 17%, 14%);
+    --header-lightMode: #1F2231;
+    --card-lightMode: hsl(228, 28%, 20%);
+    --text-lightMode: hsl(228, 12%, 44%);
+    --titles-lightMode: #FFFFFF;
+
+    --toggle-lightMode: var(--toggle-darkMode);
   }
-  .header-totalFollowers {
-    border-bottom: 1px solid #373A4D;
-  }
+}
+
+.is-dark-mode {
+  --white: hsl(230, 17%, 14%);
+  --header-lightMode: #1F2231;
+  --card-lightMode: hsl(228, 28%, 20%);
+  --text-lightMode: hsl(228, 12%, 44%);
+  --titles-lightMode: #FFFFFF;
+
+  --toggle-lightMode: var(--toggle-darkMode);
+}
+
+.is-light-mode {
+  --white: #ffffff;
+  --header-lightMode: #F8F9FE; /* Top BG Pattern */
+  --card-lightMode: #F0F3FA; /* Card BG */
+  --text-lightMode: hsl(228, 12%, 44%); /* Text */
+  --titles-lightMode: hsl(230, 17%, 14%); /* Text */
+
+  --toggle-lightMode: hsl(230, 22%, 74%);
 }
